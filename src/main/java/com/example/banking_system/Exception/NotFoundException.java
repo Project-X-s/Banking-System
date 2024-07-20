@@ -104,13 +104,18 @@ public class NotFoundException extends RuntimeException {
         return this;
     }
     
-    public NotFoundException toUsuario() {
-        setMensagem("Nenhum usuário não encontrado!!");
+    public NotFoundException toUser() {
+        setMensagem("User não encontrado!!");
         return this;
     }
 
     public NotFoundException toUsuario(String id) {
         setMensagem("Nenhum usuário com o id:: "+id+" não encontrado!");
+        return this;
+    }
+
+    public NotFoundException toUser(Integer cpf) {
+        setMensagem("User com o CPF 'd%' não encontrado!".formatted(cpf));
         return this;
     }
 

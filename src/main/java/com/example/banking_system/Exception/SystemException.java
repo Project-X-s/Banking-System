@@ -18,6 +18,11 @@ public class SystemException extends RuntimeException {
         this.mensagem = "Erro ao deletar favorito no sistema.";
     }
 
+    public SystemException user() {
+        setMensagem("Erro ao criar user");
+        return this;
+    }
+
     public SystemException error() {
         setMensagem("Erro gênerico");
         return this;

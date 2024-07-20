@@ -4,7 +4,7 @@ public record UserResponseDTO(
     String id,
     String email,
     String password,
-    String fullName, 
     Integer cpf,    
+    String fullName, 
     Boolean active
 ) {}
