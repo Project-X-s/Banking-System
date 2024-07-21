@@ -1,7 +1,0 @@
--- anotação @MappedSuperclass usada em classe abstrata para definir que ela é uma classe base para outras entidades --
-
--- anotação @Inheritance(strategy = InheritanceType.SINGLE_TABLE) especifica que toda a hierarquia de classes será mapeada para uma única tabela no banco de dados --
-
--- anotação @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING) usada em conjunto com a estratégia SINGLE_TABLE para diferenciar os tipos de entidades armazenados na tabela única --
-
--- anotação @DiscriminatorValue("COMUM") usada para definir um valor para a coluna definida na anotação @DiscriminatorColumn. --

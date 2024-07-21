@@ -11,7 +11,7 @@ import com.example.banking_system.DTO.UserRequestDTO;
 import com.example.banking_system.DTO.UserResponseDTO;
 import com.example.banking_system.Exception.NotFoundException;
 import com.example.banking_system.Exception.SystemException;
-import com.example.banking_system.Mapper.ComumUserMapper;
+import com.example.banking_system.Mapper.UserMapper;
 import com.example.banking_system.Module.User;
 import com.example.banking_system.Repository.UserRepository;
 
@@ -22,18 +22,18 @@ public class ComumUserService {
     UserRepository userRepository;
     
     @Autowired
-    ComumUserMapper comumUserMapper;
+    UserMapper userMapper;
 
 
     public UserResponseDTO create(UserRequestDTO userRequestDTO) {
         try {
-            User user = comumUserMapper.toModel(userRequestDTO);
+            User user = userMapper.toModel(userRequestDTO);
             user = userRepository.save(user);
             // Logger.info("[INFO] User "+user.Id+" criado com sucesso.");
-            return comumUserMapper.toDTO(user);
+            return userMapper.toDTO(user);
         } catch (Exception e) {
             // Logger.error("[ERRO] O sistema não conseguiu criar user::\n\n" + e.getMessage());
-            throw new SystemException().user();
+            throw new RuntimeException("Falha ao criar o usuário"+ e);
         }
     }
     
@@ -46,10 +46,10 @@ public class ComumUserService {
             }
             List<UserResponseDTO> userResponseDTOs = new ArrayList<>();
             for (User user : users) {
-                userResponseDTOs.add(comumUserMapper.toDTO(user));
+                userResponseDTOs.add(userMapper.toDTO(user));
             }
 
-            // Logger.info("[INFO] Users selecionados:: \n\n" + List.of(comumUserMapper.toString(optionalUser.get())));
+            // Logger.info("[INFO] Users selecionados:: \n\n" + List.of(userMapper.toString(optionalUser.get())));
             return userResponseDTOs;
         } catch (Exception e) {
             // Logger.error("[ERRO] O sistema não conseguiu selecionar os users::\n\n" + e.getMessage());
@@ -66,8 +66,8 @@ public class ComumUserService {
                 throw new NotFoundException().toUser(cpf);
             }
 
-            // Logger.info("[INFO] User selecionado:: \n\n" + comumUserMapper.toString(optionalUser.get()));
-            return comumUserMapper.toDTO(optionalUser.get());
+            // Logger.info("[INFO] User selecionado:: \n\n" + userMapper.toString(optionalUser.get()));
+            return userMapper.toDTO(optionalUser.get());
         } catch (Exception e) {
             // Logger.error("[ERRO] O sistema não conseguiu selecionar user pelo CPF "+cpf+"::\n\n" + e.getMessage());
             throw new SystemException();

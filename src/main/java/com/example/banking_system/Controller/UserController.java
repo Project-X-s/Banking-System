@@ -24,7 +24,7 @@ import com.example.banking_system.Utils.Response;
 import jakarta.validation.Valid;
 
 @RestController
-public class ComumUserController {
+public class UserController {
 
     @Autowired
     ComumUserService comumUserService;
@@ -35,7 +35,7 @@ public class ComumUserController {
             UserResponseDTO userResponseDTO = comumUserService.create(userRequestDTO);
             return ResponseEntity.status(201).body(new Response<>(userResponseDTO, null));
         } catch (Exception e) {
-            return ResponseEntity.status(400).body(new Response<>(null, e.getMessage() + e.getCause()));
+            return ResponseEntity.status(400).body(new Response<>(null, e.getMessage()));
         }
     }
 
@@ -47,7 +47,7 @@ public class ComumUserController {
             return ResponseEntity.status(200).body(new Response<>(userResponseDTOs, null));
         } catch(NotFoundException e) {
             return ResponseEntity.status(404).body(new Response<>(null, e.getMensagem()));
-        } catch (Exception e) {
+        } catch (SystemException e) {
             return ResponseEntity.status(400).body(new Response<>(null,"Erro ao listar todos usuários!"+ e.getMessage()));
         }
     }
@@ -134,10 +134,10 @@ public class ComumUserController {
 
 
     private void methodsOn(User user) {
-        user.add(linkTo(methodOn(ComumUserController.class).criar(null)).withRel("cadastrar"));
+        user.add(linkTo(methodOn(UserController.class).criar(null)).withRel("cadastrar"));
         // user.add(linkTo(methodOn(ComumUserController.class).deletar(user.getId())).withRel("deletar"));
-        user.add(linkTo(methodOn(ComumUserController.class).listarTodos()).withRel("listarTodos"));
-        user.add(linkTo(methodOn(ComumUserController.class).listarPorCPF(user.getCpf())).withRel("listarPorCpf"));
+        user.add(linkTo(methodOn(UserController.class).listarTodos()).withRel("listarTodos"));
+        // user.add(linkTo(methodOn(UserController.class).listarPorCPF(user.getCpf())).withRel("listarPorCpf"));
         // user.add(linkTo(methodOn(ComumUserController.class).modificar(user.getId(), null)).withRel("modificar"));
         // user.add(linkTo(methodOn(ComumUserController.class).modificarStatus(user.getId())).withRel("ativar"));
     }

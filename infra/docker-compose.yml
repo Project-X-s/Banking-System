@@ -1,0 +1,17 @@
+services:
+  sqlserver:
+    image: bs-sqlserver:0.0.1
+    ports:
+      - "1433:1433"
+    expose:
+      - "1433"
+    environment:
+      - MSSQL_USER=sa
+      - MSSQL_PASSWORD=Password123
+      - MSSQL_DATABASE=banking_system
+      - MSSQL_ROOT_PASSWORD=Root123
+    valumes:
+      - db_data:/var/lib/bs-sqlserver
+      
+volumes:
+  db_data:
