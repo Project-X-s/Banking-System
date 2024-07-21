@@ -56,8 +56,3 @@ Este repositório contém um exemplo de sistema bancário desenvolvido em Java c
 
 Contribuições são bem-vindas! Para sugestões ou problemas encontrados, abra uma issue neste repositório.
 
----
-
-Desenvolvido por [Sant-Thiago](https://github.com/Sant-Thiago)
-
-refs [Build & Run](https://www.youtube.com/watch?v=dttXo48oXt4)
