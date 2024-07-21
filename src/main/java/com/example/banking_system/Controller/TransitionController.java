@@ -26,7 +26,7 @@ public class TransitionController {
             Transition transition = transitionService.transferencia(transitionRequestDTO);
             return ResponseEntity.status(200).body(new Response<>(transition, null));
         } catch (SystemException e) {
-            return ResponseEntity.status(200).body(new Response<>(null, e.getMensagem() + e.getMessage()));
+            return ResponseEntity.status(400).body(new Response<>(null, e.getMensagem()));
         }
     }
 }

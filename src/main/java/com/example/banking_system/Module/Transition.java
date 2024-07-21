@@ -39,7 +39,7 @@ public class Transition {
     @Column(name = "value", nullable = false)
     private BigDecimal value;
     
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private Boolean status;
 
     @CreationTimestamp

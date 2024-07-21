@@ -19,10 +19,9 @@ public class AuthorizarionService {
         ResponseEntity<AuthorizationDTO> responseEntity = authorizationClient.isAuthorized();
 
         if (responseEntity.getStatusCode().isError()) {
-            throw new SystemException();
+            throw new SystemException().error("Erro na autorização");
         }
 
-        return responseEntity.getBody().authorized();
-
+        return responseEntity.getStatusCode().is2xxSuccessful();
     }
 }

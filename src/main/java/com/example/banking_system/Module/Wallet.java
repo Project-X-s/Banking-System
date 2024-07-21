@@ -40,8 +40,10 @@ public class Wallet extends RepresentationModel<User> implements Serializable {
     @Column(name = "balance", nullable = false)
     private BigDecimal balance;
 
+    
+
     public Boolean isTransferAllowedForWalletType() {
-        return this.owner.getType() == "COMUM";
+        return this.owner.getType().equals("COMUM");
     }
 
     public boolean isBalancerEqualOrGreaterThen(BigDecimal value) {

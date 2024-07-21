@@ -5,13 +5,14 @@ import java.math.BigDecimal;
 import com.example.banking_system.Module.User;
 import com.example.banking_system.Module.Wallet;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.Valid;
 
 
 public record WalletRequestDTO(
 
-    @NotBlank
+    @NotNull(message = "O owner não pode ser nulo")
+    @Valid    
     User owner,    
 
     @NotNull

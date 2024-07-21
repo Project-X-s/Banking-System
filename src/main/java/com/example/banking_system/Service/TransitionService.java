@@ -60,15 +60,15 @@ public class TransitionService {
 
     private void validadeTransfer(TransitionRequestDTO transitionRequestDTO, Wallet sender) {
         if (!sender.isTransferAllowedForWalletType()) {
-            throw new SystemException();
+            throw new SystemException().error("Não é permitido a transferencia!!");
         }
 
         if (!sender.isBalancerEqualOrGreaterThen(transitionRequestDTO.value())) {
-            throw new SystemException();
+            throw new SystemException().error("Valor a pagar é maior que o total da conta");
         }
 
         if (!authorizarionService.isAuthorized(transitionRequestDTO)) {
-            throw new SystemException();
+            throw new SystemException().error("Não está autorizado");
         }
     }
 }
