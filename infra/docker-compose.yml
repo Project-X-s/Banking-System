@@ -1,17 +1,15 @@
+version: '3.8'
+
 services:
-  sqlserver:
-    image: bs-sqlserver:0.0.1
+  sql_server:
+    build: santthiago/bs_sqlserver:0.0.1
+    container_name: sql_server
     ports:
       - "1433:1433"
-    expose:
-      - "1433"
-    environment:
-      - MSSQL_USER=sa
-      - MSSQL_PASSWORD=Password123
-      - MSSQL_DATABASE=banking_system
-      - MSSQL_ROOT_PASSWORD=Root123
-    valumes:
-      - db_data:/var/lib/bs-sqlserver
-      
-volumes:
-  db_data:
+    networks:
+      - banking_network
+
+networks:
+  banking_network:
+    driver: bridge
+
