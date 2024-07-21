@@ -1,5 +1,7 @@
 package com.example.banking_system.Exception;
 
+import org.springframework.http.ProblemDetail;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,13 @@ public class SystemException extends RuntimeException {
 
     {
         this.mensagem = "Erro ao deletar favorito no sistema.";
+    }
+
+    public ProblemDetail toProblemDetail() {
+        ProblemDetail pb = ProblemDetail.forStatus(500);
+        pb.setTitle("Banking System server error");
+
+        return pb;
     }
 
     public SystemException user() {

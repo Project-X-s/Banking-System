@@ -7,8 +7,29 @@ import com.example.banking_system.DTO.UserResponseDTO;
 import com.example.banking_system.Module.User;
 
 @Component
-public abstract class UserMapper {
+public class UserMapper {
     
-    public abstract User toModel(UserRequestDTO userRequestDTO);
-    public abstract UserResponseDTO toDTO(User user);
+    public User toModel(UserRequestDTO userRequestDTO) {
+        User user = new User();
+        user.setEmail(userRequestDTO.email());
+        user.setPassword(userRequestDTO.password());
+        user.setCpf(userRequestDTO.cpf());
+        user.setFullName(userRequestDTO.fullName());
+        user.setType(userRequestDTO.type());
+        user.setActive(true);
+        return user;
+    }
+
+    public UserResponseDTO toDTO(User user) {
+        UserResponseDTO userResponseDTO = new UserResponseDTO(
+            user.getId(),
+            user.getEmail(),
+            user.getPassword(),
+            user.getCpf(),
+            user.getFullName(),
+            user.getType(),
+            user.getActive()
+        );
+        return userResponseDTO;
+    }
 }

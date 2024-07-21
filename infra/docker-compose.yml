@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  sql_server:
+    build: santthiago/bs_sqlserver:0.0.1
+    container_name: sql_server
+    ports:
+      - "1433:1433"
+    networks:
+      - banking_network
+
+networks:
+  banking_network:
+    driver: bridge
+
